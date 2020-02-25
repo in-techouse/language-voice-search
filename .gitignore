@@ -1,0 +1,11 @@
+db.sqlite3
+UrduLanguage/__pycache__
+/UrduLanguage/__pycache__
+.vscode
+.idea
+/.idea
+/venv
+venv
+/env
+env
+*.whl
