@@ -1,10 +1,238 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="intro-wrapper bgimage overlay overlay--dark">
+    <div class="bg_image_holder">
+        <img loading="lazy"
+            src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E"
+            alt="intro" data-lazy-src="https://directorist.com/theme/demo/direo/wp-content/uploads/2019/10/intro.jpg">
+        <noscript><img src="https://directorist.com/theme/demo/direo/wp-content/uploads/2019/10/intro.jpg"
+                alt="intro"></noscript>
+    </div>
+    <div class="directory_content_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <!-- start search section -->
+                    <div data-bg="url()" id="directorist"
+                        class="directorist atbd_wrapper directory_search_area single_area ads-advaced--wrapper rocket-lazyload">
+                        <!-- start search area container -->
+                        <div class="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="atbd_search_title_area">
+                                        <h2 class="title">Find the Best Places to Be</h2>
+                                        <p class="sub_title">All the top locations – from restaurants and clubs, to
+                                            galleries, famous places and more..</p>
+                                    </div>
+                                    <!--- end title area -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- start search area -->
+                                    <form action="https://directorist.com/theme/demo/direo/search-result/" role="form">
+                                        <div class="atbd_seach_fields_wrapper">
+                                            <div class="atbdp-search-form">
+                                                <div class="single_search_field search_query">
+                                                    <input class="form-control search_fields" type="text" name="q"
+                                                        autocomplete="off" placeholder="What are you looking for?">
+                                                </div>
+                                                <div class="atbd_submit_btn">
+                                                    <button type="submit" class="btn_search">
+                                                        Search
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--More Filters  & Search Button-->
+                                    </form>
+                                </div>
+                            </div>
 
-</body>
-</html>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="directory_home_category_area">
+                                        <p></p>
+
+                                        <ul class="categories atbdp_listing_top_category">
+                                            <li>
+                                                <a
+                                                    href="https://directorist.com/theme/demo/direo/single-category/restaurants/">
+                                                    <span class="la la-cutlery" aria-hidden="true"></span>
+                                                    <p>Search anything</p>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a
+                                                    href="https://directorist.com/theme/demo/direo/single-category/hotels/">
+                                                    <span class="la la-home" aria-hidden="true"></span>
+                                                    <p>Text to Speech</p>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a
+                                                    href="https://directorist.com/theme/demo/direo/single-category/shopping/">
+                                                    <span class="la la-cart-arrow-down" aria-hidden="true"></span>
+                                                    <p>Speech to text</p>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a
+                                                    href="https://directorist.com/theme/demo/direo/single-category/outdoor-activities/">
+                                                    <span class="la la-bank" aria-hidden="true"></span>
+                                                    <p>Something</p>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div><!-- End category area -->
+                                </div>
+                            </div>
+                        </div><!-- end directory_main_area -->
+                    </div><!-- end search area container -->
+                    <!-- end search section -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="kc_clfw"></div>
+
+<section class="kc-css-835165 section-padding">
+    <div class="kc-row-container  kc-container">
+        <div class="kc-wrap-columns">
+            <div class="kc-css-704837 col-md-12">
+                <div class="module_wrapper">
+                    <div class="kc-css-369973  section-title">
+                        <h2>What Kind of Activity do you Want to try?</h2>
+                        <p>Discover best things to do restaurants, shopping, hotels, cafes and places around<br />
+                            the world by categories.</p>
+                    </div>
+                    <div class="kc-css-950115 kc-title-wrap" id="category-style1">
+                        <div id="directorist" class="atbd_wrapper">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="atbd_all_categories  atbdp-no-margin">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <a class="atbd_category_single " href="/">
+                                                    <figure>
+                                                        <figcaption class="overlay-bg">
+                                                            <div class="cat-box">
+                                                                <div class="container"
+                                                                    style="padding: 13px 45px 13px 45px;">
+                                                                    <div class="cat-info">
+                                                                        <h4 class="cat-name" style="color: #FFFFFF">
+                                                                            Something about the site
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </figcaption>
+                                                    </figure>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <a class="atbd_category_single " href="/">
+                                                    <figure>
+                                                        <figcaption class="overlay-bg">
+                                                            <div class="cat-box">
+                                                                <div class="container"
+                                                                    style="padding: 13px 45px 13px 45px;">
+                                                                    <div class="cat-info">
+                                                                        <h4 class="cat-name" style="color: #FFFFFF">
+                                                                            Something about the site
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </figcaption>
+                                                    </figure>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="kc_clfw"></div>
+
+<section class="kc-css-835165 section-padding">
+    <div class="kc-row-container  kc-container">
+        <div class="kc-wrap-columns">
+            <div class="kc-css-704837 col-md-12">
+                <div class="module_wrapper">
+                    <div class="kc-css-369973  section-title">
+                        <h2>What Kind of Activity do you Want to try?</h2>
+                        <p>Discover best things to do restaurants, shopping, hotels, cafes and places around<br />
+                            the world by categories.</p>
+                    </div>
+                    <div class="kc-css-950115 kc-title-wrap" id="category-style1">
+                        <div id="directorist" class="atbd_wrapper">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="atbd_all_categories  atbdp-no-margin">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <a class="atbd_category_single " href="/">
+                                                    <figure>
+                                                        <figcaption class="overlay-bg">
+                                                            <div class="cat-box">
+                                                                <div class="container"
+                                                                    style="padding: 13px 45px 13px 45px;">
+                                                                    <div class="cat-info">
+                                                                        <h4 class="cat-name" style="color: #FFFFFF">
+                                                                            Something about the site
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </figcaption>
+                                                    </figure>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <a class="atbd_category_single " href="/">
+                                                    <figure>
+                                                        <figcaption class="overlay-bg">
+                                                            <div class="cat-box">
+                                                                <div class="container"
+                                                                    style="padding: 13px 45px 13px 45px;">
+                                                                    <div class="cat-info">
+                                                                        <h4 class="cat-name" style="color: #FFFFFF">
+                                                                            Something about the site
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </figcaption>
+                                                    </figure>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock content %}
