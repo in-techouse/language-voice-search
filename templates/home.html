@@ -4,10 +4,10 @@
 <section class="intro-wrapper bgimage overlay overlay--dark">
     <div class="bg_image_holder">
         <img loading="lazy"
-            src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E"
-            alt="intro" data-lazy-src="https://directorist.com/theme/demo/direo/wp-content/uploads/2019/10/intro.jpg">
+             src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E"
+             alt="intro" data-lazy-src="https://directorist.com/theme/demo/direo/wp-content/uploads/2019/10/intro.jpg">
         <noscript><img src="https://directorist.com/theme/demo/direo/wp-content/uploads/2019/10/intro.jpg"
-                alt="intro"></noscript>
+                       alt="intro"></noscript>
     </div>
     <div class="directory_content_area">
         <div class="container">
@@ -15,7 +15,7 @@
                 <div class="col-lg-10 offset-lg-1">
                     <!-- start search section -->
                     <div data-bg="url()" id="directorist"
-                        class="directorist atbd_wrapper directory_search_area single_area ads-advaced--wrapper rocket-lazyload">
+                         class="directorist atbd_wrapper directory_search_area single_area ads-advaced--wrapper rocket-lazyload">
                         <!-- start search area container -->
                         <div class="">
                             <div class="row">
@@ -31,19 +31,35 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <!-- start search area -->
-                                    <form action="https://directorist.com/theme/demo/direo/search-result/" role="form">
+                                    <form action="{% url 'speak' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="record">
                                         <div class="atbd_seach_fields_wrapper">
                                             <div class="atbdp-search-form">
                                                 <div class="single_search_field search_query">
                                                     <input class="form-control search_fields" type="text" name="q"
-                                                        autocomplete="off" placeholder="What are you looking for?">
+                                                           autocomplete="off" placeholder="Speak and search anything..."
+                                                           value="{{ result }}">
                                                 </div>
                                                 <div class="atbd_submit_btn">
-                                                    <button type="submit" class="btn_search">
-                                                        Search
+                                                    <button type="submit" class="btn_search"
+                                                            style="padding: 10px 10px 10px 10px; font-size: 22px;">
+                                                        <i class="las la-microphone"
+                                                           style="font-weight: 800; font-size: 26px;"></i>Search by
+                                                        Voice
                                                     </button>
                                                 </div>
                                             </div>
+                                            {% if error %}
+                                            <div class="alert danger alert-dismissible fade show" role="alert" style="background-color: #CB4335; color: #FFFFFF; margin: 20px 4px 0px 4px;">
+                                                {{error}}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            {% endif %}
+
                                         </div>
                                         <!--More Filters  & Search Button-->
                                     </form>
@@ -58,7 +74,7 @@
                                         <ul class="categories atbdp_listing_top_category">
                                             <li>
                                                 <a
-                                                    href="https://directorist.com/theme/demo/direo/single-category/restaurants/">
+                                                        href="https://directorist.com/theme/demo/direo/single-category/restaurants/">
                                                     <span class="la la-cutlery" aria-hidden="true"></span>
                                                     <p>Search anything</p>
                                                 </a>
@@ -66,7 +82,7 @@
 
                                             <li>
                                                 <a
-                                                    href="https://directorist.com/theme/demo/direo/single-category/hotels/">
+                                                        href="https://directorist.com/theme/demo/direo/single-category/hotels/">
                                                     <span class="la la-home" aria-hidden="true"></span>
                                                     <p>Text to Speech</p>
                                                 </a>
@@ -74,7 +90,7 @@
 
                                             <li>
                                                 <a
-                                                    href="https://directorist.com/theme/demo/direo/single-category/shopping/">
+                                                        href="https://directorist.com/theme/demo/direo/single-category/shopping/">
                                                     <span class="la la-cart-arrow-down" aria-hidden="true"></span>
                                                     <p>Speech to text</p>
                                                 </a>
@@ -82,7 +98,7 @@
 
                                             <li>
                                                 <a
-                                                    href="https://directorist.com/theme/demo/direo/single-category/outdoor-activities/">
+                                                        href="https://directorist.com/theme/demo/direo/single-category/outdoor-activities/">
                                                     <span class="la la-bank" aria-hidden="true"></span>
                                                     <p>Something</p>
                                                 </a>
@@ -104,13 +120,13 @@
 <div class="kc_clfw"></div>
 
 <section class="kc-css-835165 section-padding">
-    <div class="kc-row-container  kc-container">
+    <div class="kc-row-container">
         <div class="kc-wrap-columns">
             <div class="kc-css-704837 col-md-12">
                 <div class="module_wrapper">
-                    <div class="kc-css-369973  section-title">
+                    <div class="kc-css-369973 section-title">
                         <h2>What Kind of Activity do you Want to try?</h2>
-                        <p>Discover best things to do restaurants, shopping, hotels, cafes and places around<br />
+                        <p>Discover best things to do restaurants, shopping, hotels, cafes and places around<br/>
                             the world by categories.</p>
                     </div>
                     <div class="kc-css-950115 kc-title-wrap" id="category-style1">
@@ -125,7 +141,7 @@
                                                         <figcaption class="overlay-bg">
                                                             <div class="cat-box">
                                                                 <div class="container"
-                                                                    style="padding: 13px 45px 13px 45px;">
+                                                                     style="padding: 13px 45px 13px 45px;">
                                                                     <div class="cat-info">
                                                                         <h4 class="cat-name" style="color: #FFFFFF">
                                                                             Something about the site
@@ -143,7 +159,7 @@
                                                         <figcaption class="overlay-bg">
                                                             <div class="cat-box">
                                                                 <div class="container"
-                                                                    style="padding: 13px 45px 13px 45px;">
+                                                                     style="padding: 13px 45px 13px 45px;">
                                                                     <div class="cat-info">
                                                                         <h4 class="cat-name" style="color: #FFFFFF">
                                                                             Something about the site
@@ -170,13 +186,13 @@
 <div class="kc_clfw"></div>
 
 <section class="kc-css-835165 section-padding">
-    <div class="kc-row-container  kc-container">
+    <div class="kc-row-container">
         <div class="kc-wrap-columns">
             <div class="kc-css-704837 col-md-12">
                 <div class="module_wrapper">
                     <div class="kc-css-369973  section-title">
                         <h2>What Kind of Activity do you Want to try?</h2>
-                        <p>Discover best things to do restaurants, shopping, hotels, cafes and places around<br />
+                        <p>Discover best things to do restaurants, shopping, hotels, cafes and places around<br/>
                             the world by categories.</p>
                     </div>
                     <div class="kc-css-950115 kc-title-wrap" id="category-style1">
@@ -191,7 +207,7 @@
                                                         <figcaption class="overlay-bg">
                                                             <div class="cat-box">
                                                                 <div class="container"
-                                                                    style="padding: 13px 45px 13px 45px;">
+                                                                     style="padding: 13px 45px 13px 45px;">
                                                                     <div class="cat-info">
                                                                         <h4 class="cat-name" style="color: #FFFFFF">
                                                                             Something about the site
@@ -209,7 +225,7 @@
                                                         <figcaption class="overlay-bg">
                                                             <div class="cat-box">
                                                                 <div class="container"
-                                                                    style="padding: 13px 45px 13px 45px;">
+                                                                     style="padding: 13px 45px 13px 45px;">
                                                                     <div class="cat-info">
                                                                         <h4 class="cat-name" style="color: #FFFFFF">
                                                                             Something about the site
@@ -232,7 +248,6 @@
         </div>
     </div>
 </section>
-
 
 
 {% endblock content %}
