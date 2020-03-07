@@ -19,5 +19,6 @@ from . import views
 urlpatterns = [
     url(r'^$', views.home, name="/"),
     url('speak/', views.speak, name="speak"),
-    url('results/', views.results, name="results"),
+    # url('search/', views.search, name="search"),
+    url('result/', views.result, name="result"),
 ]
