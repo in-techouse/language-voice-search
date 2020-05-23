@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
   "use strict";
   //single listing
   var single_listing = $(".atbd_single_listing");
@@ -8,7 +8,7 @@
   }
 
   //mobile menu fix
-  $(".menu-item.menu-item-has-children").on("click", function() {
+  $(".menu-item.menu-item-has-children").on("click", function () {
     $(this).toggleClass("active");
   });
 
@@ -23,8 +23,8 @@
     nav: true,
     navText: [
       '<span class="i la la-long-arrow-left"></span>',
-      '<span class="i la la-long-arrow-right"></span>'
-    ]
+      '<span class="i la la-long-arrow-right"></span>',
+    ],
   });
 
   $(".listing-carousel").owlCarousel({
@@ -33,30 +33,30 @@
     nav: true,
     navText: [
       '<span class="la la-long-arrow-left"></span>',
-      '<span class="la la-long-arrow-right"></span>'
+      '<span class="la la-long-arrow-right"></span>',
     ],
     dots: true,
     margin: 30,
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       400: {
-        items: 1
+        items: 1,
       },
       575: {
-        items: 2
+        items: 2,
       },
       767: {
-        items: 3
+        items: 3,
       },
       991: {
-        items: 4
+        items: 4,
       },
       1191: {
-        items: 5
-      }
-    }
+        items: 5,
+      },
+    },
   });
 
   // logo carousel
@@ -67,25 +67,25 @@
     margin: 100,
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       400: {
-        items: 2
+        items: 2,
       },
       575: {
-        items: 3
+        items: 3,
       },
       767: {
-        items: 3
+        items: 3,
       },
       991: {
-        items: 5
-      }
-    }
+        items: 5,
+      },
+    },
   });
 
   //setting css bg image as inline in html
-  $(".bg_image_holder").each(function() {
+  $(".bg_image_holder").each(function () {
     var $this = $(this);
     var imgLink;
     if ($this.children().attr("data-lazy-src")) {
@@ -99,7 +99,7 @@
     $this
       .css({
         "background-image": "url(" + imgLink + ")",
-        opacity: "1"
+        opacity: "1",
       })
       .children()
       .attr("alt", imgLink);
@@ -107,12 +107,9 @@
 
   /* FAQ Accordion */
   $("p.dac_body").hide();
-  $(".dacc_single > h3 > a").on("click", function(e) {
+  $(".dacc_single > h3 > a").on("click", function (e) {
     var $this = $(this);
-    $this
-      .parent()
-      .next()
-      .slideToggle();
+    $this.parent().next().slideToggle();
     $this
       .parent()
       .parents(".dacc_single")
@@ -132,11 +129,11 @@
 
   /* offcanvas menu */
   var oc_menu = $(".offcanvas-menu__contents");
-  $(".offcanvas-menu__user").on("click", function(e) {
+  $(".offcanvas-menu__user").on("click", function (e) {
     oc_menu.addClass("active");
     e.preventDefault();
   });
-  $(".offcanvas-menu__close").on("click", function(e) {
+  $(".offcanvas-menu__close").on("click", function (e) {
     oc_menu.removeClass("active");
     e.preventDefault();
   });
@@ -193,14 +190,10 @@
   //all listing sort status
   if ($(".view-mode .action-btn")) {
     var CurrentUrl = document.URL;
-    var CurrentUrlEnd = CurrentUrl.split("/")
-      .filter(Boolean)
-      .pop();
-    $(".view-mode .action-btn").each(function() {
+    var CurrentUrlEnd = CurrentUrl.split("/").filter(Boolean).pop();
+    $(".view-mode .action-btn").each(function () {
       var ThisUrl = $(this).attr("href");
-      var ThisUrlEnd = ThisUrl.split("/")
-        .filter(Boolean)
-        .pop();
+      var ThisUrlEnd = ThisUrl.split("/").filter(Boolean).pop();
       if (ThisUrlEnd === CurrentUrlEnd) {
         $(this).addClass("active");
       }
@@ -224,30 +217,23 @@
   $("#signup_modal")
     .find(".container-fluid, .row, .col-md-8.offset-md-2")
     .removeClass();
-  $("#signup_modal")
-    .find(".add_listing_title")
-    .remove();
+  $("#signup_modal").find(".add_listing_title").remove();
 
   $(".recover-pass-form").hide();
-  $(".recover-pass-link").on("click", function(e) {
+  $(".recover-pass-link").on("click", function (e) {
     e.preventDefault();
-    $(".recover-pass-form")
-      .slideToggle()
-      .show();
+    $(".recover-pass-form").slideToggle().show();
   });
 
   //woocommerce checkout confirm address fields collapse option
   $(".woocommerce-columns address").hide();
-  $(".woocommerce-column .woocommerce-column__title").on("click", function() {
+  $(".woocommerce-column .woocommerce-column__title").on("click", function () {
     $(this).toggleClass("active");
-    $(this)
-      .next()
-      .slideToggle()
-      .show();
+    $(this).next().slideToggle().show();
   });
 
-  $("body").on("change", "#at_biz_dir-categories", function(e) {
-    var clearInt = setInterval(function() {
+  $("body").on("change", "#at_biz_dir-categories", function (e) {
+    var clearInt = setInterval(function () {
       if ($(".atbdp-checkbox-list label .cf-select").length > 0) {
         clearInterval(clearInt);
       }
@@ -259,7 +245,7 @@
 
   //fixing widgets select options long sentence
   var maxLength = 30;
-  $(".widget select > option").text(function(i, text) {
+  $(".widget select > option").text(function (i, text) {
     if (text.length > maxLength) {
       return text.substr(0, maxLength) + "...";
     }
@@ -293,7 +279,7 @@
   }
 
   var s_icon = $(".social-list li span.instagram i");
-  s_icon.each(function() {
+  s_icon.each(function () {
     var si_color = $(this).css("color");
     var si_color_hex = rgb2hex(si_color);
     $(this).css("background", hex2rgba(si_color_hex, 0.1));
@@ -302,28 +288,24 @@
   var ci_color = $(
     "#category-style-two #directorist.atbd_wrapper .atbd_all_categories .atbd_category_single figure figcaption .cat-box .icon span"
   );
-  ci_color.each(function() {
+  ci_color.each(function () {
     var ci_color_value = $(this).css("color");
     var ci_color_hex = rgb2hex(ci_color_value);
-    $(this)
-      .parent(".icon")
-      .css("background", hex2rgba(ci_color_hex, 0.1));
+    $(this).parent(".icon").css("background", hex2rgba(ci_color_hex, 0.1));
   });
 
   var fi_color = $(".feature-box-wrapper li .icon span");
-  fi_color.each(function() {
+  fi_color.each(function () {
     var fi_color_value = $(this).css("color");
     var fi_color_hex = rgb2hex(fi_color_value);
-    $(this)
-      .parent(".icon")
-      .css("background", hex2rgba(fi_color_hex, 0.1));
+    $(this).parent(".icon").css("background", hex2rgba(fi_color_hex, 0.1));
   });
 
   //remove image from category style two
   $("#category-style-two .atbd_category_single figure img").remove();
 
   //location list sub items expander style
-  $(".expander").on("click", function() {
+  $(".expander").on("click", function () {
     var txt = $(this).text() === "+" ? "-" : "+";
     $(this).text(txt);
   });
@@ -344,23 +326,15 @@
     }
   }
 
-  $(".sidebar-dropdown > a").on("click", function(e) {
+  $(".sidebar-dropdown > a").on("click", function (e) {
     e.preventDefault();
     $(".sidebar-submenu").slideUp(200);
-    if (
-      $(this)
-        .parent()
-        .hasClass("active")
-    ) {
+    if ($(this).parent().hasClass("active")) {
       $(".sidebar-dropdown").removeClass("active");
     } else {
       $(".sidebar-dropdown").removeClass("active");
-      $(this)
-        .next(".sidebar-submenu")
-        .slideDown(200);
-      $(this)
-        .parent()
-        .addClass("active");
+      $(this).next(".sidebar-submenu").slideDown(200);
+      $(this).parent().addClass("active");
     }
     $(
       ".sidebar-submenu #v-pills-active-tab, .sidebar-submenu #n-pills-active-tab"
@@ -368,23 +342,23 @@
   });
 
   //add class deshboard menu icon
-  $("#close-sidebar").on("click", function() {
+  $("#close-sidebar").on("click", function () {
     $(".page-wrapper").removeClass("toggled");
     $("#show-sidebar").removeClass("active");
   });
-  $("#show-sidebar").on("click", function(e) {
+  $("#show-sidebar").on("click", function (e) {
     e.preventDefault();
     $(".page-wrapper").toggleClass("toggled");
     $(this).toggleClass("active");
   });
 
   //add class dashboard toggles
-  $("#menu-toggle").on("click", function(e) {
+  $("#menu-toggle").on("click", function (e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
   });
 
-  $(window).resize(function(e) {
+  $(window).resize(function (e) {
     if ($(window).width() <= 1199) {
       $("#wrapper").removeClass("toggled");
     } else {
@@ -393,14 +367,14 @@
   });
 
   //dashboard tab active
-  $('#v-pills-tab a[data-toggle="pill"]').on("click", function() {
+  $('#v-pills-tab a[data-toggle="pill"]').on("click", function () {
     $('#v-pills-tab a[data-toggle="pill"]').removeClass("active");
   });
 
-  $(function() {
+  $(function () {
     var hash = window.location.hash;
     hash && $('ul#v-pills-tab a[href="' + hash + '"]').tab("show");
-    $("ul#v-pills-tab a").on("click", function(e) {
+    $("ul#v-pills-tab a").on("click", function (e) {
       $(this).tab("show");
       var scrollmem = $("body").scrollTop();
       window.location.hash = this.hash;
@@ -412,7 +386,7 @@
 
   //
   //User dashboard related scripts
-  $("body").on("click", "#direo_remove_listing", function(e) {
+  $("body").on("click", "#direo_remove_listing", function (e) {
     e.preventDefault();
 
     var $this = $(this);
@@ -428,12 +402,14 @@
         confirmButtonColor: "#DD6B55",
         confirmButtonText: direo_localize_data.i18n_text.confirm_delete,
         showLoaderOnConfirm: true,
-        closeOnConfirm: true
+        closeOnConfirm: true,
       },
-      function(isConfirm) {
+      function (isConfirm) {
         if (isConfirm) {
           // user has confirmed, now remove the listing
-          direo_ajax_handler($this, "remove_listing", data, function(response) {
+          direo_ajax_handler($this, "remove_listing", data, function (
+            response
+          ) {
             $("body").append(response);
             if ("success" === response) {
               // show success message
@@ -441,7 +417,7 @@
                 title: direo_localize_data.i18n_text.delete,
                 type: "success",
                 timer: 200,
-                showConfirmButton: false
+                showConfirmButton: false,
               });
               $(".listing_id_" + id).remove();
               $this.remove();
@@ -460,7 +436,7 @@
                 text: direo_localize_data.i18n_text.error_details,
                 type: "error",
                 timer: 2000,
-                showConfirmButton: false
+                showConfirmButton: false,
               });
             }
           });
@@ -497,24 +473,24 @@
       type: "post",
       url: direo_localize_data.ajaxurl,
       data: data,
-      beforeSend: function() {
+      beforeSend: function () {
         jQuery("<span class='atbdp_ajax_loading'></span>").insertAfter(
           ElementToShowLoadingIconAfter
         );
       },
-      success: function(data) {
+      success: function (data) {
         jQuery(".atbdp_ajax_loading").remove();
         CallBackHandler(data);
-      }
+      },
     });
   }
 
   /// User Dashboard
-  $("#user_profile_form").on("submit", function(e) {
+  $("#user_profile_form").on("submit", function (e) {
     // submit the form to the ajax handler and then send a response from the database and then work accordingly and then after finishing the update profile then work on remove listing and also remove the review and rating form the custom table once the listing is deleted successfully.
     var $form = $(this);
     var $queryString = $form.serialize();
-    direo_ajax_handler($form, "update_user_profile", $queryString, function(
+    direo_ajax_handler($form, "update_user_profile", $queryString, function (
       response
     ) {
       if (response.success) {
@@ -549,7 +525,7 @@
     imgTag = imgContainer.find("#pro_img");
 
   // ADD IMAGE LINK
-  addImgLink.on("click", function(event) {
+  addImgLink.on("click", function (event) {
     event.preventDefault();
 
     // If the media frame already exists, reopen it.
@@ -563,19 +539,15 @@
     frame = wp.media({
       title: direo_localize_data.uploadTitle,
       button: {
-        text: direo_localize_data.uploadBTN
+        text: direo_localize_data.uploadBTN,
       },
       library: { type: "image" }, // only
-      multiple: false // Set to true to allow multiple files to be selected
+      multiple: false, // Set to true to allow multiple files to be selected
     });
 
     // When an image is selected in the media frame...
-    frame.on("select", function() {
-      const selection = frame
-        .state()
-        .get("selection")
-        .first()
-        .toJSON();
+    frame.on("select", function () {
+      const selection = frame.state().get("selection").first().toJSON();
       if (selection.type === "image") {
         // we have got an image attachment so lets proceed.
         // target the input field and then assign the current id of the attachment to an array.
@@ -588,7 +560,7 @@
     frame.open();
   });
 
-  delImgLink.on("click", function(e) {
+  delImgLink.on("click", function (e) {
     e.preventDefault();
     // if no image exist then add placeholder and hide remove image button
     imgTag.attr(
@@ -599,28 +571,26 @@
   });
 
   /* add to favorite and remove favorite */
-  $(".atbdp_mark_as_fav").each(function() {
-    $(this).on("click", function(event) {
+  $(".atbdp_mark_as_fav").each(function () {
+    $(this).on("click", function (event) {
       event.preventDefault();
       var data = {
         action: "direo_public_add_remove_favorites",
-        post_id: $(this).data("listing_id")
+        post_id: $(this).data("listing_id"),
       };
       var fav_tooltip_success =
         "<span>" + direo_localize_data.i18n_text.added_favourite + "</span>";
       var fav_tooltip_warning =
         "<span>" + direo_localize_data.i18n_text.please_login + "</span>";
       $(".atbd_fav_tooltip").hide();
-      $.post(direo_localize_data.ajaxurl, data, function(response) {
+      $.post(direo_localize_data.ajaxurl, data, function (response) {
         var staElement = $("#atbdp-fav_" + data["post_id"]).selector;
         if (response === "login_required") {
           $(staElement)
             .children(".atbd_fav_tooltip")
             .append(fav_tooltip_warning);
-          $(staElement)
-            .children(".atbd_fav_tooltip")
-            .fadeIn();
-          setTimeout(function() {
+          $(staElement).children(".atbd_fav_tooltip").fadeIn();
+          setTimeout(function () {
             $(staElement)
               .children(".atbd_fav_tooltip")
               .children("span")
@@ -639,10 +609,8 @@
             $(staElement)
               .children(".atbd_fav_tooltip")
               .append(fav_tooltip_success);
-            $(staElement)
-              .children(".atbd_fav_tooltip")
-              .fadeIn();
-            setTimeout(function() {
+            $(staElement).children(".atbd_fav_tooltip").fadeIn();
+            setTimeout(function () {
               $(staElement)
                 .children(".atbd_fav_tooltip")
                 .children("span")

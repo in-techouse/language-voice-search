@@ -7,14 +7,14 @@
             <div class="kc-css-704837 col-md-12">
                 <div class="module_wrapper">
                     <div class="kc-css-369973 section-title">
-                        <h2>{{title}}</h2>
-                        <p>{{snippet}}</p>
+                        <h2 id="title">{{title}}</h2>
+                        <p id="snippet">{{snippet}}</p>
                     </div>
                     <div class="kc-css-950115 kc-title-wrap" id="category-style1">
                         <div id="directorist" class="atbd_wrapper">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <iframe src="{{link}}" style="width: 100%; height: 800px;"></iframe>
+                                    <iframe id="myIFrame" src="{{link}}" style="width: 100%; height: 800px;"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -24,4 +24,118 @@
         </div>
     </div>
 </section>
+
+<script>
+    (function ($) {
+        "use strict";
+        console.log("Home Document is ready");
+        setTimeout(function () {
+            let title = $("#title").text();
+            console.log("Title: ", title)
+            convertTitleToSpeech(title);
+
+
+            // $("body").mousedown(function () {
+            //     console.log("Mouse Down");
+            // });
+
+            // $("body").mouseup(function () {
+            //     console.log("Mouse Up");
+            //     let text = window.getSelection();
+            //     console.log("Text is: ", text);
+            // });
+
+            const myIFrame = document.getElementById("myIFrame");
+            console.log("myIFrame: ", myIFrame);
+
+            const content = $("#myIFrame").contents();
+            console.log("Content: ", content);
+
+            const iFrameWindow = myIFrame.contentWindow;
+            const iFrameDocument = myIFrame.contentDocument;
+            console.log("iFrameWindow: ", iFrameWindow);
+            console.log("iFrameDocument: ", iFrameDocument);
+
+            const windowDocument = iFrameWindow.document;
+
+            console.log("windowDocument: ", windowDocument);
+
+            // var url = myIFrame.src;
+
+            // var getData = function (data) {
+            //     if (data && data.query && data.query.results && data.query.results.resources && data.query.results.resources.content && data.query.results.resources.status == 200) loadHTML(data.query.results.resources.content);
+            //     else if (data && data.error && data.error.description) loadHTML(data.error.description);
+            //     else loadHTML('Error: Cannot load ' + url);
+            // };
+            // var loadURL = function (src) {
+            //     url = src;
+            //     var script = document.createElement('script');
+            //     script.src = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20data.headers%20where%20url%3D%22' + encodeURIComponent(url) + '%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=getData';
+            //     document.body.appendChild(script);
+            // };
+            // var loadHTML = function (html) {
+            //     iframe.src = 'about:blank';
+            //     iframe.contentWindow.document.open();
+            //     iframe.contentWindow.document.write(html.replace(/<head>/i, '<head><base href="' + url + '"><scr' + 'ipt>document.addEventListener("click", function(e) { if(e.target && e.target.nodeName == "A") { e.preventDefault(); parent.loadURL(e.target.href); } });</scr' + 'ipt>'));
+            //     iframe.contentWindow.document.close();
+            // }
+
+            // loadURL(url);
+
+
+            // const iFrame = $("#iFrame");//.contentDocument;
+            // console.log("iFrame: ", iFrame);
+
+        }, 3000);
+    })(jQuery);
+
+    function convertTitleToSpeech(text) {
+        let snippet = document.getElementById("snippet").textContent;
+        console.log("Snippet: ", snippet);
+        jQuery.ajax({
+            type: "get",
+            url: `/textToSpeech?text=${text}`,
+            success: function (data) {
+                console.log("Success: ", data);
+                convertSnippetToSpeech(snippet);
+            },
+            error: function (err) {
+                console.log("Error: ", err);
+                convertSnippetToSpeech(snippet);
+            }
+        });
+    }
+
+    function convertSnippetToSpeech(text) {
+        setTimeout(function () {
+            jQuery.ajax({
+                type: "get",
+                url: `/textToSpeech?text=${text}`,
+                success: function (data) {
+                    console.log("Success: ", data);
+                },
+                error: function (err) {
+                    console.log("Error: ", err);
+                }
+            });
+        }, 1000);
+    }
+
+
+    function convertTextToSpeech(text) {
+        jQuery.ajax({
+            type: "get",
+            url: `/textToSpeech?text=${text}`,
+            beforeSend: function () {
+                console.log("Before Send");
+            },
+            success: function (data) {
+                console.log("Success: ", data);
+            },
+            error: function (err) {
+                console.log("Error: ", err);
+            }
+        });
+    }
+</script>
 {% endblock content %}
