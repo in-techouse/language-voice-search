@@ -39,7 +39,6 @@ def speak(request):
 
 def searchResults(request):
     return render(request, 'searchResults.html', {"result": "", "error": "", "searchResults": []})
-    # return render(request, 'searchResults.html')
 
 
 def result(request):
@@ -51,8 +50,6 @@ def result(request):
 
 def textToSpeech(request):
     text = request.GET.get('text', '')
-    print(text)
-    # text = "Hello World, Kesi hai ye world"
     lang = "en"
     speech = Speech(text, lang)
     speech.play()
