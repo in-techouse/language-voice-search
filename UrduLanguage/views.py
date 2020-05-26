@@ -3,6 +3,9 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from googleapiclient.discovery import build
 from google_speech import Speech
 from django.http import HttpResponse
+from gtts import gTTS
+import os
+import pyttsx3
 
 my_api_key = "AIzaSyBJn_yucgbMHwYpTPGao4mv8fGnKOhFajM"
 my_cse_id = "005735334869674061878:aiopq1r49ml"
@@ -49,8 +52,18 @@ def result(request):
 
 
 def textToSpeech(request):
+    # engine = pyttsx3.init()
+    # voices = engine.getProperty('voices')
+    # for voice in voices:
+    #     print(voice)
+    #     if voice.languages[0] == u'en_US':
+    #         engine.setProperty('voice', voice.id)
+    #         break
     text = request.GET.get('text', '')
-    lang = "en"
+    lang = "hi-IN"
+    # output = gTTS(text=text, lang=lang, slow=False)
+    # output.save("output.mp3")
+    # os.system("start output.mp3")
     speech = Speech(text, lang)
     speech.play()
     return HttpResponse("1")
