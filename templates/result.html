@@ -89,6 +89,23 @@
         }, 3000);
     })(jQuery);
 
+    function translateTitle(text) {
+        let snippet = document.getElementById("snippet").textContent;
+        console.log("Snippet: ", snippet);
+        jQuery.ajax({
+            type: "get",
+            url: `/tanslate?text=${text}`,
+            success: function (data) {
+                console.log("Success: ", data);
+                convertSnippetToSpeech(snippet);
+            },
+            error: function (err) {
+                console.log("Error: ", err);
+                convertSnippetToSpeech(snippet);
+            }
+        });
+    }
+
     function convertTitleToSpeech(text) {
         let snippet = document.getElementById("snippet").textContent;
         console.log("Snippet: ", snippet);

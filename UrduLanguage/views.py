@@ -57,3 +57,10 @@ def textToSpeech(request):
     speech = Speech(translatorResult.text, lang)
     speech.play()
     return HttpResponse("1")
+
+
+def tanslate(request):
+    text = request.GET.get('text', '')
+    translator = Translator()
+    translatorResult = translator.translate(text, src='en', dest='ur')
+    return HttpResponse(translatorResult.text)

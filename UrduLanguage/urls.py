@@ -18,8 +18,9 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.home, name="/"),
-    url('speak/', views.speak, name="speak"),
-    url('searchResults/', views.searchResults, name="searchResults"),
-    url('textToSpeech/', views.textToSpeech, name="textToSpeech"),
-    url('result/', views.result, name="result"),
+    url(r'^speak/', views.speak, name="speak"),
+    url(r'^searchResults/', views.searchResults, name="searchResults"),
+    url(r'^textToSpeech/', views.textToSpeech, name="textToSpeech"),
+    url(r'^tanslate/', views.tanslate, name="tanslate"),
+    url(r'^result/', views.result, name="result"),
 ]
