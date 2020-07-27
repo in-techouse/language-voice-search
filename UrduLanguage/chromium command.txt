@@ -1,0 +1,1 @@
+Chromium.lnk --disable-web-security --disable-gpu --disable-site-isolation-trials --user-data-dir="C:\ChromiumData"
