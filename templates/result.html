@@ -1,14 +1,66 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<style>
+#google_translate_element {
+    display: none !important;
+}
+.skiptranslate{
+    display: none;
+}
+#goog-gt-tt{
+    display: none !important;
+}
+#wrapper {
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    min-height: 100%; 
+    position: fixed;
+    background-color: lightgray;
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+#wrapper img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 100px;
+}
+#wrapper div {
+    margin-top: 200px;
+}
+
+#wrapper div p{
+    text-align: center;
+    width: 100%;
+}
+</style>
+<div id="wrapper" class="notranslate">
+    <div class="row">
+        <img src="{% static 'UrduLanguage/img/loading.gif' %}" />
+    </div>
+    <div class="row" style="margin-top: -40x; padding-left: 100px; padding-right: 100px;">
+        <p>
+            <b>Please wait...</b><br/>
+            We're working on the page
+        </p>
+    </div>
+</div>
+<div id="google_translate_element"></div>
 <section class="kc-css-835165 section-padding">
     <div class="kc-row-container">
         <div class="kc-wrap-columns">
             <div class="kc-css-704837 col-md-12">
                 <div class="module_wrapper">
                     <div class="kc-css-369973 section-title">
-                        <h2 id="title">{{title}}</h2>
-                        <p id="snippet">{{snippet}}</p>
+                        <h2 id="title" class="notranslate">{{title}}</h2>
+                        <h2 id="titleTranslation" style="margin-top: 10px; font-weight: 400;"><b class="notranslate">Translation: </b>{{title}}</h2>
+                        <p id="snippet" class="notranslate">{{snippet}}</p>
+                        <h2 id="snippetTranslation" style="margin-top: 13px; font-weight: 400;"><b class="notranslate">Translation: </b>{{snippet}}</h2>
                     </div>
                     <div class="kc-css-950115 kc-title-wrap" id="category-style1">
                         <div id="directorist" class="atbd_wrapper">
@@ -24,135 +76,6 @@
         </div>
     </div>
 </section>
-
-<script>
-    (function ($) {
-        "use strict";
-        console.log("Home Document is ready");
-        setTimeout(function () {
-            let title = $("#title").text();
-            console.log("Title: ", title)
-            convertTitleToSpeech(title);
-
-
-            // $("body").mousedown(function () {
-            //     console.log("Mouse Down");
-            // });
-
-            // $("body").mouseup(function () {
-            //     console.log("Mouse Up");
-            //     let text = window.getSelection();
-            //     console.log("Text is: ", text);
-            // });
-
-            // const myIFrame = document.getElementById("myIFrame");
-            // console.log("myIFrame: ", myIFrame);
-
-            // const content = $("#myIFrame").contents();
-            // console.log("Content: ", content);
-
-            // const iFrameWindow = myIFrame.contentWindow;
-            // const iFrameDocument = myIFrame.contentDocument;
-            // console.log("iFrameWindow: ", iFrameWindow);
-            // console.log("iFrameDocument: ", iFrameDocument);
-
-            // const windowDocument = iFrameWindow.document;
-
-            // console.log("windowDocument: ", windowDocument);
-
-            // var url = myIFrame.src;
-
-            // var getData = function (data) {
-            //     if (data && data.query && data.query.results && data.query.results.resources && data.query.results.resources.content && data.query.results.resources.status == 200) loadHTML(data.query.results.resources.content);
-            //     else if (data && data.error && data.error.description) loadHTML(data.error.description);
-            //     else loadHTML('Error: Cannot load ' + url);
-            // };
-            // var loadURL = function (src) {
-            //     url = src;
-            //     var script = document.createElement('script');
-            //     script.src = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20data.headers%20where%20url%3D%22' + encodeURIComponent(url) + '%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=getData';
-            //     document.body.appendChild(script);
-            // };
-            // var loadHTML = function (html) {
-            //     iframe.src = 'about:blank';
-            //     iframe.contentWindow.document.open();
-            //     iframe.contentWindow.document.write(html.replace(/<head>/i, '<head><base href="' + url + '"><scr' + 'ipt>document.addEventListener("click", function(e) { if(e.target && e.target.nodeName == "A") { e.preventDefault(); parent.loadURL(e.target.href); } });</scr' + 'ipt>'));
-            //     iframe.contentWindow.document.close();
-            // }
-
-            // loadURL(url);
-
-
-            // const iFrame = $("#iFrame");//.contentDocument;
-            // console.log("iFrame: ", iFrame);
-
-        }, 3000);
-    })(jQuery);
-
-    function translateTitle(text) {
-        let snippet = document.getElementById("snippet").textContent;
-        console.log("Snippet: ", snippet);
-        jQuery.ajax({
-            type: "get",
-            url: `/tanslate?text=${text}`,
-            success: function (data) {
-                console.log("Success: ", data);
-                convertSnippetToSpeech(snippet);
-            },
-            error: function (err) {
-                console.log("Error: ", err);
-                convertSnippetToSpeech(snippet);
-            }
-        });
-    }
-
-    function convertTitleToSpeech(text) {
-        let snippet = document.getElementById("snippet").textContent;
-        console.log("Snippet: ", snippet);
-        jQuery.ajax({
-            type: "get",
-            url: `/textToSpeech?text=${text}`,
-            success: function (data) {
-                console.log("Success: ", data);
-                convertSnippetToSpeech(snippet);
-            },
-            error: function (err) {
-                console.log("Error: ", err);
-                convertSnippetToSpeech(snippet);
-            }
-        });
-    }
-
-    function convertSnippetToSpeech(text) {
-        setTimeout(function () {
-            jQuery.ajax({
-                type: "get",
-                url: `/textToSpeech?text=${text}`,
-                success: function (data) {
-                    console.log("Success: ", data);
-                },
-                error: function (err) {
-                    console.log("Error: ", err);
-                }
-            });
-        }, 1000);
-    }
-
-
-    function convertTextToSpeech(text) {
-        jQuery.ajax({
-            type: "get",
-            url: `/textToSpeech?text=${text}`,
-            beforeSend: function () {
-                console.log("Before Send");
-            },
-            success: function (data) {
-                console.log("Success: ", data);
-            },
-            error: function (err) {
-                console.log("Error: ", err);
-            }
-        });
-    }
-</script>
+<script src="http://translate.google.com/translate_a/element.js?cb=initTranslator"></script>
+<script type='text/javascript' src="{% static 'UrduLanguage/js/result.js' %}"></script>
 {% endblock content %}
