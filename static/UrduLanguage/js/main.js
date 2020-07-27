@@ -13,7 +13,7 @@
   });
 
   // enable bootstrap tooltip
-  $('[data-toggle="tooltip"]').tooltip();
+  // $('[data-toggle="tooltip"]').tooltip();
   var rtl = true; //direo_rtl.rtl === "true" ? true : false;
   // testimonial-carousel
   $(".testimonial-carousel").owlCarousel({

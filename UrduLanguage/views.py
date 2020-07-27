@@ -65,7 +65,8 @@ def textToSpeech(request):
     translator = Translator()
     translatorResult = translator.translate(text, src="en", dest="ur")
     speech = Speech(translatorResult.text, lang)
-    speech.play()
+    sox_effects = ("speed", "1.0")
+    speech.play(sox_effects)
     return HttpResponse("1")
 
 
