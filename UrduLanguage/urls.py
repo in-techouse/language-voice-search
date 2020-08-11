@@ -21,6 +21,6 @@ urlpatterns = [
     url(r"^speak/", views.speak, name="speak"),
     url(r"^searchResults/", views.searchResults, name="searchResults"),
     url(r"^textToSpeech/", views.textToSpeech, name="textToSpeech"),
-    # url(r"^tanslate/", views.tanslate, name="tanslate"),
-    url(r"^result/", views.result, name="result"),
+
+     url(r"^result/", views.result, name="result"),
 ]
