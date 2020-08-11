@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import Http404, HttpResponse, HttpResponseRedirect
 from googleapiclient.discovery import build
 from google_speech import Speech
 from django.http import HttpResponse
@@ -67,17 +66,3 @@ def textToSpeech(request):
     speech = Speech(translatorResult.text, lang)
     speech.play()
     return HttpResponse("1")
-
-
-# def tanslate(request):
-#     url = request.GET.get("url", "")
-#     print("URL in Translate page is: " + url)
-#     response = request.get(get_translate_url(url))
-#     return response.content
-#     # translator = Translator()
-#     # translatorResult = translator.translate(text, src="en", dest="ur")
-#     # return HttpResponse(translatorResult.text)
-
-
-# def get_translate_url(url):
-#     return "http://translate.google.com/translate?hl=bg&ie=UTF-8&u=%s&sl=en&tl=ur" + url
