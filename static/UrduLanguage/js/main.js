@@ -12,6 +12,11 @@
     $(this).toggleClass("active");
   });
 
+<<<<<<< HEAD
+=======
+  // enable bootstrap tooltip
+  // $('[data-toggle="tooltip"]').tooltip();
+>>>>>>> 05d754647787b7c16a9b45bce53bdc61b5c5a81e
   var rtl = true; //direo_rtl.rtl === "true" ? true : false;
   // testimonial-carousel
   $(".testimonial-carousel").owlCarousel({
