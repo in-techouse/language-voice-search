@@ -9,3 +9,8 @@ venv
 /env
 env
 *.whl
+.python-version
+*.pyc
+UrduLanguage/*.pyc
+.vs
+/.vs
