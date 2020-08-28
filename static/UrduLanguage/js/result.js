@@ -1,10 +1,21 @@
+let texts = [];
+let finalText = [];
+var xhr = null;
+
+function onUnload() {
+    if (xhr) xhr.abort();
+    return "some message";
+}
 $(document).ready(function() {
     console.log("Result JS is ready");
-
+    window.onbeforeunload = onUnload;
     initMyIframe();
 });
 
 function initMyIframe() {
+    onUnload();
+    texts = [];
+    finalText = [];
     setTimeout(function() {
         const iFrameBody = $("#myIFrame").contents().find("body");
         const iFrameHead = $("#myIFrame").contents().find("head")[0];
@@ -32,6 +43,7 @@ function initMyIframe() {
                 )
             );
         setTimeout(function() {
+            traverseHtml();
             const scriptCode = document.createElement("script");
             scriptCode.type = "text/javascript";
             scriptCode.text = `
@@ -94,23 +106,153 @@ function initMyIframe() {
                 });
             setTimeout(function() {
                 $("#wrapper").fadeOut(1000);
-                convertTitleToSpeech();
             }, 4000);
         }, 4000);
     }, 2000);
 }
 
-function convertTitleToSpeech() {
-    const iframeChildren = $("#myIFrame").contents().find("body")[0].children;
-    // console.log("iFrame Body: ", iframeBody);
-    console.log("iFrame Body Children: ", iframeChildren.length);
-    for (let i = 0; i < iframeChildren.length; i++) {
-        const levelOneChild = iframeChildren[i].children;
-        console.log("Level one child, children count is: ", levelOneChild.length);
-        if (levelOneChild.length > 0) {}
-        // console.log("Count is: ", i);
-        // console.log("Child at index: ", iframeChildren[i]);
+function traverseHtml() {
+    console.log("Traverse HTML Called");
+    const contents = $("#myIFrame").contents();
+    // Getting All Paragraphs Text
+    const iFrameParagraphs = contents.find("p");
+    iFrameParagraphs.each(function() {
+        const text = $(this).text().trim();
+        if (text.length > 15) {
+            console.log("Paragraph Text is: ", text);
+            let str = text;
+            str = str.replace(/\s+/g, "").toLowerCase();
+            texts[str] = text;
+        }
+    });
+    // Getting All Heading 1 Text
+    const iFrameH1 = contents.find("h1");
+    iFrameH1.each(function() {
+        const text = $(this).text().trim();
+        if (text.length > 15) {
+            console.log("Heading 1 Text is: ", text);
+            let str = text;
+            str = str.replace(/\s+/g, "").toLowerCase();
+            texts[str] = text;
+        }
+    });
+    // Getting All Heading 2 Text
+    const iFrameH2 = contents.find("h2");
+    iFrameH2.each(function() {
+        const text = $(this).text().trim();
+        if (text.length > 15) {
+            console.log("Heading 2 Text is: ", text);
+            let str = text;
+            str = str.replace(/\s+/g, "").toLowerCase();
+            texts[str] = text;
+        }
+    });
+    // Getting All Heading 3 Text
+    const iFrameH3 = contents.find("h3");
+    iFrameH3.each(function() {
+        const text = $(this).text().trim();
+        if (text.length > 15) {
+            console.log("Heading 3 Text is: ", text);
+            let str = text;
+            str = str.replace(/\s+/g, "").toLowerCase();
+            texts[str] = text;
+        }
+    });
+    // Getting All Heading 4 Text
+    const iFrameH4 = contents.find("h4");
+    iFrameH4.each(function() {
+        const text = $(this).text().trim();
+        if (text.length > 15) {
+            console.log("Heading 4 Text is: ", text);
+            let str = text;
+            str = str.replace(/\s+/g, "").toLowerCase();
+            texts[str] = text;
+        }
+    });
+    // Getting All Heading 5 Text
+    const iFrameH5 = contents.find("h5");
+    iFrameH5.each(function() {
+        const text = $(this).text().trim();
+        if (text.length > 15) {
+            console.log("Heading 5 Text is: ", text);
+            let str = text;
+            str = str.replace(/\s+/g, "").toLowerCase();
+            texts[str] = text;
+        }
+    });
+    // Getting All Font Text
+    const iFrameFont = contents.find("font");
+    iFrameFont.each(function() {
+        const text = $(this).text().trim();
+        if (text.length > 15) {
+            console.log("Font Text is: ", text);
+            let str = text;
+            str = str.replace(/\s+/g, "").toLowerCase();
+            texts[str] = text;
+        }
+    });
+    // Getting All Span Text
+    const iFrameSpan = contents.find("span");
+    iFrameSpan.each(function() {
+        const text = $(this).text().trim();
+        if (text.length > 15) {
+            console.log("Span Text is: ", text);
+            let str = text;
+            str = str.replace(/\s+/g, "").toLowerCase();
+            texts[str] = text;
+        }
+    });
+    // Getting All Div Text
+    const iFrameDiv = contents.find("div");
+    iFrameDiv.each(function() {
+        const text = $(this).text().trim();
+        if (
+            text.length > 15 &&
+            !(
+                text.includes("div") ||
+                text.includes("img") ||
+                text.includes("p") ||
+                text.includes("h1") ||
+                text.includes("style") ||
+                text.includes("script")
+            )
+        ) {
+            let str = text;
+            str = str.replace(/\s+/g, " ");
+            console.log("Div Str is: ", str);
+            let str1 = text;
+            str1 = str1.replace(/\s+/g, "").toLowerCase();
+            texts[str1] = str;
+        }
+    });
+
+    console.log("Texts Array is: ", texts);
+
+    for (var key in texts) {
+        if (texts.hasOwnProperty(key)) {
+            finalText.push(texts[key]);
+        }
     }
+    setTimeout(() => {
+        convertSnippetToSpeech(0);
+    }, 3000);
+
+    // for (let i = 0; i < iFrameParagraphs.length; i++) {
+    //     console.log("Current Paragraph is: ", iFrameParagraphs[i]);
+    //     console.log("Current Paragraph is: ", iFrameParagraphs[i]);
+    // }
+    // const iframeChildren = $("#myIFrame").contents().find("body")[0].children;
+    // // console.log("iFrame Body: ", iframeBody);
+    // console.log("iFrame Body Children: ", iframeChildren.length);
+    // for (let i = 0; i < iframeChildren.length; i++) {
+    //     const levelOneChild = iframeChildren[i].children;
+    //     console.log("Level one child, children count is: ", levelOneChild.length);
+    //     if (levelOneChild.length > 0) {
+    //         traverseChildren(levelOneChild);
+    //     }
+    //     // console.log("Count is: ", i);
+    //     // console.log("Child at index: ", iframeChildren[i]);
+    // }
     // iframeChildren.forEach((child) => {
     //     console.log("Child: ", child);
     // });
@@ -139,21 +281,37 @@ function convertTitleToSpeech() {
     // });
 }
 
-// function traverseChildren() {
-
+// function traverseChildren(children) {
+//     console.log("Traverse Children Called: ", children);
+//     for (let i = 0; i < children.length; i++) {
+//         const levelTwoChild = children[i].children;
+//         const levelTwoHtml = children[i].html();
+//         console.log(
+//             "Traverse Children Called, Level Children are: ",
+//             levelTwoChild
+//         );
+//         console.log("Traverse Children Called, Level HTML are: ", levelTwoHtml);
+//     }
 // }
 
-// function convertSnippetToSpeech() {
-//     let snippet = $("#snippet").text();
-//     jQuery.ajax({
-//         type: "get",
-//         url: `/textToSpeech?text=${snippet}`,
-//         success: function(data) {},
-//         error: function(err) {
-//             console.log("Error: ", err);
-//         },
-//     });
-// }
+function convertSnippetToSpeech(index) {
+    if (index >= finalText.length) {
+        return;
+    }
+
+    xhr = jQuery.ajax({
+        type: "get",
+        url: `/textToSpeech?text=${finalText[index]}`,
+        success: function(data) {
+            setTimeout(() => {
+                convertSnippetToSpeech(index + 1);
+            }, 10000);
+        },
+        error: function(err) {
+            console.log("Error: ", err);
+        },
+    });
+}
 
 function initTranslator() {
     $.when(
