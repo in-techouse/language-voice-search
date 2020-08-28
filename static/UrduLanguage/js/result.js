@@ -84,11 +84,14 @@ function initMyIframe() {
       `;
             iFrameHead.append(scriptCode);
             $("#myIFrame").contents().find("#goog-gt-tt").css("display", "none");
-            $("#myIFrame").contents().find("a").click(function() {
-                console.log("Click Captured on all Anchor tags");
-                $("#wrapper").fadeIn(300);
-                initMyIframe();
-            });
+            $("#myIFrame")
+                .contents()
+                .find("a")
+                .click(function() {
+                    console.log("Click Captured on all Anchor tags");
+                    $("#wrapper").fadeIn(300);
+                    initMyIframe();
+                });
             setTimeout(function() {
                 $("#wrapper").fadeOut(1000);
                 convertTitleToSpeech();
@@ -98,33 +101,59 @@ function initMyIframe() {
 }
 
 function convertTitleToSpeech() {
-    let title = $("#title").text();
-    jQuery.ajax({
-        type: "get",
-        url: `/textToSpeech?text=${title}`,
-        success: function(data) {
-            setTimeout(function() {
-                convertSnippetToSpeech();
-            }, 3000);
-        },
-        error: function(err) {
-            console.log("Error: ", err);
-            convertSnippetToSpeech();
-        },
-    });
+    const iframeChildren = $("#myIFrame").contents().find("body")[0].children;
+    // console.log("iFrame Body: ", iframeBody);
+    console.log("iFrame Body Children: ", iframeChildren.length);
+    for (let i = 0; i < iframeChildren.length; i++) {
+        const levelOneChild = iframeChildren[i].children;
+        console.log("Level one child, children count is: ", levelOneChild.length);
+        if (levelOneChild.length > 0) {}
+        // console.log("Count is: ", i);
+        // console.log("Child at index: ", iframeChildren[i]);
+    }
+    // iframeChildren.forEach((child) => {
+    //     console.log("Child: ", child);
+    // });
+
+    // console.log("iFrame Body: ", iframeBody[0].prevObject);
+    // console.log("iFrame Body: ", iframeBody.prevObject);
+
+    // console.log("Convert Title to Speech p Tags is: ", pTags);
+    // pTags.forEach((p) => {
+    //     console.log("Single p Tag is: ", p);
+    //     console.log("Single p Tag Text is: ", p.text());
+    // });
+    // let title = $("#title").text();
+    // jQuery.ajax({
+    //     type: "get",
+    //     url: `/textToSpeech?text=${title}`,
+    //     success: function(data) {
+    //         setTimeout(function() {
+    //             convertSnippetToSpeech();
+    //         }, 3000);
+    //     },
+    //     error: function(err) {
+    //         console.log("Error: ", err);
+    //         convertSnippetToSpeech();
+    //     },
+    // });
 }
 
-function convertSnippetToSpeech() {
-    let snippet = $("#snippet").text();
-    jQuery.ajax({
-        type: "get",
-        url: `/textToSpeech?text=${snippet}`,
-        success: function(data) {},
-        error: function(err) {
-            console.log("Error: ", err);
-        },
-    });
-}
+// function traverseChildren() {
+
+// }
+
+// function convertSnippetToSpeech() {
+//     let snippet = $("#snippet").text();
+//     jQuery.ajax({
+//         type: "get",
+//         url: `/textToSpeech?text=${snippet}`,
+//         success: function(data) {},
+//         error: function(err) {
+//             console.log("Error: ", err);
+//         },
+//     });
+// }
 
 function initTranslator() {
     $.when(

@@ -32,9 +32,12 @@ def allDataSet(request):
         return redirect("/login")
     allDataSet = database.child("DataSet").order_by_key().get()
     listDataSet = []
+    if allDataSet.val() == None:
+        return render(request, "admin/allDataSet.html", {"listDataSet": listDataSet})
     for data in allDataSet.each():
         listDataSet.append(data.val())
     return render(request, "admin/allDataSet.html", {"listDataSet": listDataSet})
+
 
 def addDataSet(request):
     if not request.session.has_key('id'):
@@ -51,7 +54,8 @@ def addDataSet(request):
             "urduText": urduText
         }
         database.child("DataSet").child(id).set(dataSet)
-        return render(request, "admin/addDataSet.html", {"success" : 1})
+        return render(request, "admin/addDataSet.html", {"success": 1})
+
 
 def editDataSet(request):
     if not request.session.has_key('id'):
@@ -74,6 +78,7 @@ def editDataSet(request):
         }
         database.child("DataSet").child(dataSetId).set(dataSet)
         return redirect("/allDataSet")
+
 
 def deleteDataSet(request):
     if not request.session.has_key('id'):
